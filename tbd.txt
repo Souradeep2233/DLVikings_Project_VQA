@@ -1,0 +1,5 @@
+hf download Qwen/Qwen2.5-VL-7B-Instruct
+pip install "huggingface-hub>=0.30.0,<1.0"
+
+
+Guys u can test with the 15 images also.

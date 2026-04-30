@@ -1,3 +1,5 @@
+import time
+start_time0 = time.time()
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
 from qwen_vl_utils import process_vision_info
 import re
@@ -11,7 +13,6 @@ from collections import Counter
 import torch
 import argparse
 import os
-import time
 import urllib.request
 import matplotlib.pyplot as plt
 from tqdm import tqdm
@@ -334,11 +335,19 @@ if __name__ == "__main__":
     test_dir = args.test_dir
     results = []
 
+    test_csv_path = os.path.join(test_dir, "test.csv")
+    df=pd.read_csv(test_csv_path)
+    img_paths = df['image_name'].tolist()
+    
+    end_time0 = time.time()
+    
     start_time = time.time()
+        
 
-    for x in tqdm(os.listdir(test_dir)):
+    
+    for x in tqdm(img_paths):
 
-        IMAGE_PATH = os.path.join(test_dir, x)
+        IMAGE_PATH = os.path.join(test_dir, "image",x+".png")
 
         try:
             img = Image.open(IMAGE_PATH).convert("RGB")
@@ -348,24 +357,29 @@ if __name__ == "__main__":
 
             # Store result
             results.append({
+                "id":x,
                 "image_name": x,
-                "prediction": result['answer']
+                "option": result['answer']
             })
 
         except Exception as e:
             print(f"Error processing {x}: {e}")
             results.append({
+                "id":x,
                 "image_name": x,
-                "prediction": None
+                "option": None
             })
 
     end_time = time.time()
+    total_time0 = end_time0 - start_time0
     total_time = end_time - start_time
 
     # ---- Save CSV ----
     df = pd.DataFrame(results)
-    df.to_csv(args.output, index=False)
+    output_dir=os.path.join(test_dir, "submission.csv")
+    df.to_csv(output_dir, index=False)
 
     # ---- Print time ----
-    print(f"\nTotal Time: {total_time:.2f} seconds")
+    print(f"\nTotal Time before the loop: {total_time0:.2f} seconds")
+    print(f"\nTotal Time of the loop: {total_time:.2f} seconds")
     print(f"Avg Time per Image: {total_time / len(results):.2f} seconds")
