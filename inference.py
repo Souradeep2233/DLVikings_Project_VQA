@@ -262,7 +262,7 @@ def run_batch(
     output_path: str = "submissions.csv",
     use_voting: bool = False,
     n_votes: int = 3,
-) -> pd.DataFrame:
+):
     """
     Process every row in a CSV and produce a submission file.
 
@@ -308,7 +308,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--test_dir",
         type=str,
-        default="all_images",
+        default="testing_project",
         help="Directory containing test images (default: all_images)"
     )
     parser.add_argument(
@@ -347,7 +347,7 @@ if __name__ == "__main__":
     
     for x in tqdm(img_paths):
 
-        IMAGE_PATH = os.path.join(test_dir, "image",x+".png")
+        IMAGE_PATH = os.path.join(str(test_dir), "images", x + ".png")
 
         try:
             img = Image.open(IMAGE_PATH).convert("RGB")

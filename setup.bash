@@ -17,7 +17,7 @@ source "$CONDA_BASE/etc/profile.d/conda.sh"
 
 # 2. Fresh Environment Creation
 echo "[1/7] Creating Conda environment..."
-conda create -n $ENV_NAME python=$PYTHON_VERSION
+conda create -n $ENV_NAME python=$PYTHON_VERSION -y
 
 # 3. Activation
 echo "[2/7] Activating environment..."
@@ -41,8 +41,8 @@ fi
 echo "[5/7] Enforcing huggingface-hub version constraint (<1.0)..."
 pip install "huggingface-hub>=0.30.0,<1.0"
 
-echo "[6/7] Hugging Face CLI download..."
-pip install -U "huggingface_hub[cli]"
+# echo "[6/7] Hugging Face CLI download..."
+# pip install -U "huggingface_hub[cli]"
 
 echo "[7/7]Model Download Started: Qwen2.5-VL 7B Instruct"
 hf download Qwen/Qwen2.5-VL-7B-Instruct
