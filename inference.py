@@ -24,7 +24,7 @@ print("Loading model …")
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
     MODEL_ID,
     torch_dtype=DTYPE,
-    device_map="auto",          # balances across 2×T4
+    device_map="auto",        
     # ── optional: quantise to 4-bit to save ~7 GB if VRAM is tight ──
     # load_in_4bit=True,
     # bnb_4bit_compute_dtype=torch.bfloat16,
@@ -347,7 +347,7 @@ if __name__ == "__main__":
     
     for x in tqdm(img_paths):
 
-        IMAGE_PATH = os.path.join(test_dir, "image",x+".png")
+        IMAGE_PATH = os.path.join(test_dir, "images",x+".png")
 
         try:
             img = Image.open(IMAGE_PATH).convert("RGB")

@@ -3,3 +3,5 @@ pip install "huggingface-hub>=0.30.0,<1.0"
 
 
 Guys u can test with the 15 images also.
+Only .png? Finally "images/" or, "image/" in the test directory ?
+Can we keep the codes in the .zip file  or we need to fetch from the github Only ?
