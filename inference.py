@@ -347,7 +347,7 @@ if __name__ == "__main__":
     
     for x in tqdm(img_paths):
 
-        IMAGE_PATH = os.path.join(test_dir, "image",x+".png")
+        IMAGE_PATH = os.path.join(str(test_dir), "images", str(x)+ ".png")
 
         try:
             img = Image.open(IMAGE_PATH).convert("RGB")
