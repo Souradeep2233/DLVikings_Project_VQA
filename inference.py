@@ -1,3 +1,7 @@
+import os
+os.environ["TRANSFORMERS_OFFLINE"] = "1"
+os.environ["HF_HUB_OFFLINE"] = "1"
+
 import time
 start_time0 = time.time()
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
@@ -12,7 +16,6 @@ from tqdm.auto import tqdm
 from collections import Counter
 import torch
 import argparse
-import os
 import urllib.request
 import matplotlib.pyplot as plt
 from tqdm import tqdm
@@ -22,7 +25,7 @@ DTYPE = torch.float16
 
 print("Loading model …")
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
-    MODEL_ID,
+    "./model",
     torch_dtype=DTYPE,
     device_map="auto",        
     # ── optional: quantise to 4-bit to save ~7 GB if VRAM is tight ──
@@ -33,7 +36,11 @@ model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
 model.eval()
 
 print("Loading processor …")
-processor = AutoProcessor.from_pretrained(MODEL_ID)
+processor = AutoProcessor.from_pretrained(
+    "./model",
+    local_files_only=True,
+    trust_remote_code=True
+)
 
 print("✓ Model ready")
 print(f"Total params : {sum(p.numel() for p in model.parameters()) / 1e9:.2f} B")
