@@ -39,13 +39,13 @@ The project is uploaded in a .zip file named project_2_25m2571_25m2573_24m2135.z
 
 ### Option 1: Automated setup
 
-Step 1. unzip project_2_25m2571_25m2573_24m2135.zip
+Step 1. `unzip project_2_25m2571_25m2573_24m2135.zip`
 
-Step 2. cd project_2_25m2571_25m2573_24m2135
+Step 2. `cd project_2_25m2571_25m2573_24m2135`
 
 Use the provided script:
 
-step 3. bash setup.bash
+step 3. `bash setup.bash`
 
 This script:
 
