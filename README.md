@@ -35,14 +35,16 @@ Run all commands below from the repository root, which is the directory containi
 - Internet access during setup only
 
 ## Environment Setup
+The project is uploaded in a .zip file named project_2_25m2571_25m2573_24m2135.zip. Follow these procedures:
 
 ### Option 1: Automated setup
 
+Step 1. unzip project_2_25m2571_25m2573_24m2135.zip
+Step 2. cd project_2_25m2571_25m2573_24m2135
+
 Use the provided script:
 
-```bash
-bash setup.bash
-```
+step 3. bash setup.bash
 
 This script:
 
@@ -80,16 +82,8 @@ The inference script expects the test directory to look like this:
 
 Activate the environment and run:
 
-```bash
-conda activate gnr_project_env
-python inference.py --test_dir testing_project
-```
-
-For grading, replace `testing_project` with the provided hidden test directory:
-
-```bash
-python inference.py --test_dir /path/to/evaluation_folder
-```
+Step 4. conda activate gnr_project_env
+Step 5. python inference.py --test_dir /path/to/evaluation_folder
 
 ## Output
 
@@ -115,7 +109,6 @@ Rules for `option`:
 
 ## Execution Rules
 
-- Run the script from the repository root so `./model` resolves correctly
 - The model must already exist in `./model` before inference starts
 - Internet is not required during inference
 - `inference.py` explicitly enables offline mode through:
@@ -124,13 +117,12 @@ Rules for `option`:
 - Images must be PNG files inside `<test_dir>/images/`
 - The script appends `.png` automatically to each `image_name`
 - The current implementation writes output to `<test_dir>/submission.csv`
-- The safest command for evaluation is `python inference.py --test_dir <folder>`
-- The current script processes one image at a time and is intended for at most 50 questions
+- The current script processes one image at a time.
 - Although the CLI exposes `--output`, `--voting`, and `--n_votes`, the current grading path should rely only on `--test_dir`
 
 ## Important Notes
 
 - `sample_project/` is only a format example and does not include an `images/` folder
-- `testing_project/` is the correct local folder to use for a dry run
+- `testing_project/` is the correct local folder to use only for a dry run
 - If an image fails during inference, the current script writes an empty prediction for that row; inspect the generated `submission.csv` before final submission
 - The included code uses a local model folder and does not depend on external APIs during prediction
