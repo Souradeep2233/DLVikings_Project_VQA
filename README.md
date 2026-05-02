@@ -40,6 +40,7 @@ The project is uploaded in a .zip file named project_2_25m2571_25m2573_24m2135.z
 ### Option 1: Automated setup
 
 Step 1. unzip project_2_25m2571_25m2573_24m2135.zip
+
 Step 2. cd project_2_25m2571_25m2573_24m2135
 
 Use the provided script:
@@ -83,6 +84,7 @@ The inference script expects the test directory to look like this:
 Activate the environment and run:
 
 Step 4. conda activate gnr_project_env
+
 Step 5. python inference.py --test_dir /path/to/evaluation_folder
 
 ## Output
